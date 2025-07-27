@@ -16,7 +16,7 @@ st.set_page_config(
 
 # Initialize Gemini API
 def configure_gemini():
-    os.environ['GOOGLE_API_KEY'] = "AIzaSyDuAM0UE9hd1unNr4ucOQqaVfHVdvspgws"
+    os.environ['GOOGLE_API_KEY'] = "YOUR_API_KEY"
     genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
 
 # Text generation function
