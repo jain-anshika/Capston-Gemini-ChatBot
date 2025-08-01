@@ -3,6 +3,7 @@ from PIL import Image
 import google.generativeai as genai
 import os
 from streamlit_chat import message
+from dotenv import load_dotenv
 from datetime import datetime
 import time
 
@@ -16,8 +17,13 @@ st.set_page_config(
 
 # Initialize Gemini API
 def configure_gemini():
-    os.environ['GOOGLE_API_KEY'] = "YOUR_API_KEY"
-    genai.configure(api_key=os.environ['GOOGLE_API_KEY'])
+    from dotenv import load_dotenv
+    load_dotenv()  # Load environment variables from .env file
+    api_key = os.getenv('GOOGLE_API_KEY')
+    if not api_key:
+        st.error("Please set your GOOGLE_API_KEY in the .env file")
+        st.stop()
+    genai.configure(api_key=api_key)
 
 # Text generation function
 def send_text_request(prompt):
